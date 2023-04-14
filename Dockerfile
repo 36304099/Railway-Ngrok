@@ -1,5 +1,5 @@
-#FROM ubuntu
-FROM webdevops/php-nginx:7.4
+FROM ubuntu
+#FROM webdevops/php-nginx:7.4
 #FROM sbwml/appnode
 
 ARG NGROK_TOKEN
