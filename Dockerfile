@@ -1,6 +1,6 @@
 #FROM ubuntu
-#FROM webdevops/php-nginx:7.4
-FROM sbwml/appnode
+FROM webdevops/php-nginx:7.4
+#FROM sbwml/appnode
 
 ARG NGROK_TOKEN
 ARG REGION=jp
