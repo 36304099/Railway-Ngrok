@@ -1,4 +1,6 @@
-FROM ubuntu
+#FROM ubuntu
+FROM webdevops/php-nginx:7.4
+
 ARG NGROK_TOKEN
 ARG REGION=jp
 ENV DEBIAN_FRONTEND=noninteractive
