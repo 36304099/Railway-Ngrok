@@ -1,12 +1,12 @@
-#FROM ubuntu
-#RUN apt update && apt install -y \
-#     ssh wget unzip vim curl
-# RUN apt install -y tmux
+FROM ubuntu
+RUN apt update && apt install -y \
+     ssh wget unzip vim curl
+ RUN apt install -y tmux
 #RUN apt install -y python3
 #RUN apt install -y python3-pip
 #RUN pip3 install requests
 
-FROM curlimages/curl:7.82.0
+#FROM curlimages/curl:7.82.0
 
 
 ARG NGROK_TOKEN=tokenFrom_http_dashboard.ngrok.com/auth
@@ -86,10 +86,10 @@ RUN echo nothing \
     && echo "./tmp/gost/run.sh &" >> /tmp/openssh.sh \
     && echo "./tmp/gost/run_http.sh &" >> /tmp/openssh.sh \
     && echo "./tmp/frp/run.sh &" >> /tmp/openssh.sh \
-    && echo "while :; do echo 'Hit CTRL+C'; sleep 1; done" >> /tmp/openssh.sh \
+    && echo "while :; do echo 'Hit CTRL+C'; cat /tmp/ngrok.txt; sleep 5; done" >> /tmp/openssh.sh \
 #    && echo '/usr/sbin/sshd -D' >>/tmp/openssh.sh \
 #    && echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config  \
-#    && echo root:wakaka|chpasswd \
+    && echo root:wakaka|chpasswd \
     && chmod 755 /tmp/openssh.sh
 # /tmp/openssh.sh
 
