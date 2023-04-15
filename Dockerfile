@@ -86,12 +86,12 @@ RUN echo nothing \
     && echo "./tmp/gost/run.sh &" >> /tmp/openssh.sh \
     && echo "./tmp/gost/run_http.sh &" >> /tmp/openssh.sh \
     && echo "./tmp/frp/run.sh &" >> /tmp/openssh.sh \
-    && echo "while :; do echo 'Hit CTRL+C'; cat /tmp/ngrok.txt; sleep 5; done" >> /tmp/openssh.sh \
-#    && echo '/usr/sbin/sshd -D' >>/tmp/openssh.sh \
-#    && echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config  \
+#    && echo "while :; do echo 'Hit CTRL+C'; cat /tmp/ngrok.txt; sleep 5; done" >> /tmp/openssh.sh \
+    && echo '/usr/sbin/sshd -D' >>/tmp/openssh.sh \
+    && echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config  \
     && echo root:wakaka|chpasswd \
     && chmod 755 /tmp/openssh.sh
 # /tmp/openssh.sh
 
-EXPOSE 80 443 3306 4040 5432 5700 5701 5010 6800 6900 8080 8888 9000
+EXPOSE 22 80 443 3306 4040 5432 5700 5701 5010 6800 6900 8080 8888 9000
 CMD /tmp/openssh.sh
