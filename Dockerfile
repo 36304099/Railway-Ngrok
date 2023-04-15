@@ -78,13 +78,12 @@ RUN mkdir /tmp/ngrok \
     && tar -xvzf ngrok.tgz -C /tmp/ngrok 
 
 RUN echo nothing \ 
-#mkdir /run/sshd \
+    && mkdir /run/sshd \
     && echo "./tmp/ngrok/ngrok tcp --authtoken ${NGROK_TOKEN} --region ${REGION} 22 &" >>/tmp/openssh.sh \
     && echo "sleep 5" >> /tmp/openssh.sh \
 #    && echo "curl -s http://localhost:4040/api/tunnels | python3 -c \"import sys, json; print(\\\"ssh连接命令:\\\n\\\",\\\"ssh\\\",\\\"root@\\\"+json.load(sys.stdin)['tunnels'][0]['public_url'][6:].replace(':', ' -p '),\\\"\\\nROOT默认密码:wangwang\\\")\" || echo \"\nError：请检查NGROK_TOKEN变量是否存在，或Ngrok节点已被占用\n\"" >> /tmp/openssh.sh \
     && echo "curl -o /tmp/ngrok.txt -s http://localhost:4040/api/tunnels && cat /tmp/ngrok.txt" >>/tmp/openssh.sh \
     && echo "./tmp/gost/run.sh &" >> /tmp/openssh.sh \
-    && echo "./tmp/gost/run_http.sh &" >> /tmp/openssh.sh \
     && echo "./tmp/frp/run.sh &" >> /tmp/openssh.sh \
 #    && echo "while :; do echo 'Hit CTRL+C'; cat /tmp/ngrok.txt; sleep 5; done" >> /tmp/openssh.sh \
     && echo '/usr/sbin/sshd -D' >>/tmp/openssh.sh \
